@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "checkskills"
+version = "0.1.0"
+description = "Audit AI skills and MCP servers before you install them: an MCP server, a skill and a CLI."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+# The MCP SDK 2.x renames the server API (FastMCP -> MCPServer); stay on 1.x until migrated.
+dependencies = ["mcp>=1.2,<2"]
+keywords = ["mcp", "security", "ai-agents", "skills", "prompt-injection"]
+
+[project.optional-dependencies]
+dev = ["pytest>=7"]
+
+[project.scripts]
+checkskills = "checkskills.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+checkskills = ["rules/*.md"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests", "src"]
+addopts = "--doctest-modules -q"

